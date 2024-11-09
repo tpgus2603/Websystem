@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>도서 관리 시스템 </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>도서 관리 시스템</h1>
+    <input type="text" id="searchInput" class="search-bar" placeholder="제목 또는 저자로 검색">
+    <table class="book-table">
+      <thead>
+          <tr>
+              <th data-sort="title">제목 &#x25B2;&#x25BC;</th>
+              <th data-sort="author">저자 &#x25B2;&#x25BC;</th>
+              <th data-sort="price">가격 &#x25B2;&#x25BC;</th>
+              <th data-sort="stock">수량 &#x25B2;&#x25BC;</th>
+              <th>작업</th>
+          </tr>
+      </thead>
+      <tbody id="bookTableBody">
+      </tbody>
+  </table>
+  <div id="pagination" class="pagination">
+  </div>
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h2>도서 상세 정보</h2>
+        <br>
+        <div class="book-info">
+            <p><strong>제목:</strong> <span id="modalTitle"></span></p><br>
+            <p><strong>저자:</strong> <span id="modalAuthor"></span></p><br>
+            <p><strong>가격:</strong> <span id="modalPrice"></span></p><br>
+            <p><strong>재고:</strong> <span id="modalStock"></span></p><br>
+        </div>
+        <form id="editBookForm">
+            <input type="hidden" id="editBookId">
+            <label>
+                재고:
+                <input type="number" id="editStock">
+            </label><br><br>
+            <button class="btn">재고 수정</button>
+        </form>
+    </div>
+</div>
+    <form id="addBookForm" class="add-book-form">
+      <h2>새 도서 추가</h2>
+      <input type="text" id="title" placeholder="제목" class="input-field" required>
+      <input type="text" id="author" placeholder="저자" class="input-field" required>
+      <input type="number" id="price" placeholder="가격" class="input-field" required>
+      <input type="number" id="stock" placeholder="재고" class="input-field" required>
+      <button type="submit" class="btn add-btn">추가</button>
+  </form>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

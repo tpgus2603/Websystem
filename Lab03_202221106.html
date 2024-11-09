@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서 관리 페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+        }
+
+        #output {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>도서 관리 시스템</h1>
+    <button onclick="displayAllBooks()">모든 책 표시</button>
+    <button onclick="addNewBook()">새 책 추가</button>
+    <button onclick="findBookByTitle()">제목으로 책 찾기</button>
+    <button onclick="updateBookStock()">책 재고 수정</button>
+    <div id="output"></div>
+
+    <script>
+        let books = [];
+
+        books.push({ id: 1, title: "JavaScript 기초", author: "홍길동", price: 25000, stock: 10 });
+        books.push({ id: 2, title: "HTML/CSS 입문", author: "김철수", price: 30000, stock: 5 });
+        books.push({ id: 3, title: "웹 개발 시작하기", author: "이영희", price: 28000, stock: 8 });
+
+        function displayOutput(text) {
+            document.getElementById('output').textContent = text;
+        }
+
+        function displayAllBooks() {
+            let bookList = "도서 목록:\n\n";
+            for (let i = 0; i < books.length; i++) {
+                let book = books[i];
+                bookList += book.title + " (저자: " + book.author + ") - 가격: " + book.price + "원, 재고: " + book.stock + "권\n";
+            }
+            displayOutput(bookList);
+        }
+        function addNewBook() {
+            let inputTitle = prompt("책 제목을 입력: ");
+            if (inputTitle === null || inputTitle.trim() === "") {
+                alert("책 제목이 필요합니다.");
+                return;
+            }
+            let inputAuthor = prompt("저자를 입력: ");
+            if (inputAuthor === null || inputAuthor.trim() === "") {
+                alert("저자 이름이 필요합니다.");
+                return;
+            }
+            let inputPrice = prompt("가격을 입력: ");
+            if (inputPrice === null || inputPrice.trim() === "") {
+                alert("가격이 필요합니다.");
+                return;
+            }
+            if (isNaN(inputPrice) || parseInt(inputPrice) < 0) {
+                alert("유효한 가격을 입력하세요.");
+                return;
+            }
+            let inputStock = prompt("재고를 입력: ");
+            if (inputStock === null || inputStock.trim() === "") {
+                alert("재고가 필요합니다.");
+                return;
+            }
+            inputStock = inputStock.trim();
+            if (isNaN(inputStock) || parseInt(inputStock) < 0) {
+                alert("유효한 재고 수량을 입력하세요.");
+                return;
+            }
+            inputStock = parseInt(inputStock);
+
+            let idnum = books.length + 1;
+
+            books.push({
+                id: idnum,
+                title: inputTitle,
+                author: inputAuthor,
+                price: inputPrice,
+                stock: inputStock
+            });
+
+            alert("새 책이 성공적으로 추가되었습니다.");
+
+        }
+        function findBookByTitle() {
+            let ans = [];
+            let searchTitle = prompt("검색할 책 제목을 입력하세요:");
+
+            if (searchTitle === null || searchTitle.trim() === "") {
+                alert("검색어가 필요합니다.");
+                return;
+            }
+
+            searchTitle = searchTitle.trim().toLowerCase(); 
+
+            for (let i = 0; i < books.length; i++) {
+                let bookTitle = books[i].title.toLowerCase();
+                if (bookTitle.includes(searchTitle)) {
+                    ans.push(books[i]); 
+                }
+            }
+
+            if (ans.length === 0) {
+                displayOutput("검색 결과가 없습니다.");
+            } else {
+                let result = "검색 결과:\n\n";
+                for (let i = 0; i < ans.length; i++) {
+                    let book = ans[i];
+                    result += book.title + " (저자: " + book.author + ") - 가격: " + book.price + "원, 재고: " + book.stock + "권\n";
+                displayOutput(result);
+            }
+        }
+    }
+    function updateBookStock() {
+            let inputTitle = prompt("재고를 수정할 책의 제목을 입력: ");
+            
+            if (inputTitle === null || inputTitle.trim() === "") {
+                alert("책 제목이 필요합니다.");
+                return;
+            }
+            inputTitle = inputTitle.trim();
+            
+            let isOk = false;
+            for (let i = 0; i < books.length; i++) {
+                if (books[i].title === inputTitle) {
+                    isOk = true;
+                    let inputStock = prompt("새로운 재고 입력");
+                    
+                    if (inputStock === null || inputStock.trim() === "") {
+                        alert("재고 수량이 필요합니다.");
+                        return;
+                    }
+                    inputStock = parseInt(inputStock);
+                    if (isNaN(inputStock)||parseInt(inputStock)<0) {
+                        alert("유효한 숫자를 입력하세요.");
+                        return;
+                    }
+                    books[i].stock = inputStock;
+                    alert("재고 수정 완료!");
+                    break;
+                }
+            }
+            if (!isOk) {
+                alert("해당 제목의 책을 찾을 수 없습니다.");
+            }
+        }
+    </script>
+</body>
+</html>

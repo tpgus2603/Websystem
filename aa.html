@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox, Grid, and Float Comparison</title>
+  <style>
+    /* Flexbox Example */
+    .flex-container {
+      display: flex; /* Flex 컨테이너 설정 */
+      flex-direction: row; /* 아이템을 가로로 정렬 */
+      flex-wrap: wrap; /* 넘치면 다음 줄로 이동 */
+      background-color: lightgray;
+      gap: 10px; /* 아이템 간격 */
+    }
+
+    .flex-item {
+      background-color: lightgreen;
+      padding: 20px;
+      width: 100px;
+      text-align: center;
+    }
+
+    /* Grid Example */
+    .grid-container {
+      display: grid; /* Grid 컨테이너 설정 */
+      grid-template-columns: 150px 150px; /* 두 개의 150px 열 생성 */
+      gap: 10px; /* 셀 간격 */
+      background-color: lightblue;
+    }
+
+    .grid-item {
+      background-color: lightcoral;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Float Example */
+    .float-container {
+      background-color: lightyellow;
+      padding: 10px;
+    }
+
+    .float-item {
+      float: left; /* 요소를 왼쪽으로 정렬 */
+      width: 150px;
+      margin-right: 10px; /* 오른쪽 간격 추가 */
+      background-color: lightpink;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .float-text {
+      overflow: hidden; /* 요소가 겹치지 않도록 설정 */
+    }
+  </style>
+</head>
+<body>
+
+  <h2>1. Flexbox Layout</h2>
+  <div class="flex-container">
+    <div class="flex-item">Item 1</div>
+    <div class="flex-item">Item 2</div>
+    <div class="flex-item">Item 3</div>
+    <div class="flex-item">Item 4</div>
+  </div>
+
+  <h2>2. Grid Layout</h2>
+  <div class="grid-container">
+    <div class="grid-item">Item 1</div>
+    <div class="grid-item">Item 2</div>
+    <div class="grid-item">Item 3</div>
+    <div class="grid-item">Item 4</div>
+  </div>
+
+  <h2>3. Float Layout</h2>
+  <div class="float-container">
+    <div class="float-item">Image 1</div>
+    <div class="float-item">Image 2</div>
+    <div class="float-item">Image 3</div>
+    <div class="float-text">
+      <p>
+        This is some text that flows around the floated items. 
+        When float is applied, surrounding elements like text wrap around the floated element.
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

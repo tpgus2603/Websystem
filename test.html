@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Responsive Web Example</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 960px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    #menu {
+      width: 260px;
+      float: left;
+      background-color: coral;
+    }
+
+    #section {
+      width: 700px;
+      float: right;
+    }
+
+    @media screen and (max-width: 767px) {
+      body {
+        width: auto
+      }
+
+      #menu {
+        width: auto;
+        float: none;
+      }
+
+      #section {
+        width: auto;
+        float: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="menu">
+    <ul>
+      <li><a href="https://www.naver.com">Naver</a></li>
+      <li><a href="https://www.daum.net">Daum</a></li>
+      <li><a href="https://www.ajou.ac.kr">Ajou</a></li>
+    </ul>
+  </div>
+  <div id="section">
+    <h1 title="뭐하냐">Two Towers</h1>
+    <p>Merry and Pippin, taken captive by the Uruk-hai, learn that one of the orcs from Mordor,
+      Grishnákh, knows about the ring and believes it to be on one of them. </p>
+  </div>
+</body>
+</html>
